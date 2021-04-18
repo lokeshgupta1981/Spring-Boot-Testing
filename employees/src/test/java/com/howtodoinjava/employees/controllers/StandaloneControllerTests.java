@@ -1,6 +1,5 @@
 package com.howtodoinjava.employees.controllers;
 
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -25,23 +24,23 @@ import com.howtodoinjava.employees.services.EmployeeService;
 @WebMvcTest(EmployeeController.class)
 public class StandaloneControllerTests {
 
-  @MockBean
-  EmployeeService employeeService;
+	@MockBean
+	EmployeeService employeeService;
 
-  @Autowired
-  MockMvc mockMvc;
+	@Autowired
+	MockMvc mockMvc;
 
-  @Test
-  public void testCreateReadDelete() throws Exception {
-	  Employee employee = new Employee("Lokesh", "Gupta");
-    List<Employee> employees = Arrays.asList(employee);
+	@Test
+	public void testfindAll() throws Exception {
+		Employee employee = new Employee("Lokesh", "Gupta");
+		List<Employee> employees = Arrays.asList(employee);
 
-    Mockito.when(employeeService.findAll()).thenReturn(employees);
+		Mockito.when(employeeService.findAll()).thenReturn(employees);
 
-    mockMvc.perform(get("/employee"))
-        .andExpect(status().isOk())
-        .andExpect(jsonPath("$", Matchers.hasSize(1)))
-        .andExpect(jsonPath("$[0].firstName", Matchers.is("Lokesh")));
-  }
+		mockMvc.perform(get("/employee"))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$", Matchers.hasSize(1)))
+				.andExpect(jsonPath("$[0].firstName", Matchers.is("Lokesh")));
+	}
 
 }

@@ -29,7 +29,6 @@ public class IntegrationTests {
 
 		employeeController.delete(employeeResult.getId());
 		Assertions.assertThat(employeeController.read()).isEmpty();
-
 	}
 
 	@Test
@@ -37,6 +36,5 @@ public class IntegrationTests {
 
 		Assertions.assertThatExceptionOfType(ValidationException.class)
 				.isThrownBy(() -> employeeController.somethingIsWrong());
-
 	}
 }
