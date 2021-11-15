@@ -8,10 +8,12 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.howtodoinjava.employees.dao.EmployeeRepository;
@@ -26,8 +28,13 @@ public class ServiceTests
     @Mock
     EmployeeRepository dao;
     
+    @BeforeEach
+    public void init() {
+        MockitoAnnotations.openMocks(this);
+    }
+    
     @Test
-    public void testFindAllEmployees()
+    void testFindAllEmployees()
     {
         List<Employee> list = new ArrayList<Employee>();
         Employee empOne = new Employee("John", "John");
@@ -48,7 +55,7 @@ public class ServiceTests
     }
     
     @Test
-    public void testCreateOrSaveEmployee()
+    void testCreateOrSaveEmployee()
     {
         Employee employee = new Employee("Lokesh","Gupta");
          
