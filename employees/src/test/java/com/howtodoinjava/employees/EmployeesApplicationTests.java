@@ -18,6 +18,6 @@ public class EmployeesApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		Assertions.assertThat(employeeController).isNot(null);
+		Assertions.assertThat(employeeController).isNotNull();
 	}
 }

@@ -1,21 +1,34 @@
 package com.howtodoinjava.employees;
 
+import com.howtodoinjava.employees.controllers.EmployeeController;
+import com.howtodoinjava.employees.model.Employee;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.*;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import com.howtodoinjava.employees.model.Employee;
-
+@SpringBootTest(webEnvironment = RANDOM_PORT)
 public class SystemTests {
+
+	@Autowired
+	private EmployeeController controller;
+
+	@LocalServerPort
+	private int port;
+
+	@Autowired
+	private TestRestTemplate restTemplate;
 
 	@Test
 	public void testCreateReadDelete() {
-		RestTemplate restTemplate = new RestTemplate();
-
-		String url = "http://localhost:8080/employee";
+		String url = "http://localhost:"+port+"/employee";
 
 		Employee employee = new Employee("Lokesh", "Gupta");
 		ResponseEntity<Employee> entity = restTemplate.postForEntity(url, employee, Employee.class);
@@ -30,9 +43,7 @@ public class SystemTests {
 	@Test
 	public void testErrorHandlingReturnsBadRequest() {
 
-		RestTemplate restTemplate = new RestTemplate();
-
-		String url = "http://localhost:8080/wrong";
+		String url = "http://localhost:"+port+"/wrong";
 
 		try {
 			restTemplate.getForEntity(url, String.class);
