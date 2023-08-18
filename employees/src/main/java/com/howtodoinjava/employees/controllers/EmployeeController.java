@@ -1,6 +1,6 @@
 package com.howtodoinjava.employees.controllers;
 
-import javax.validation.ValidationException;
+import jakarta.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

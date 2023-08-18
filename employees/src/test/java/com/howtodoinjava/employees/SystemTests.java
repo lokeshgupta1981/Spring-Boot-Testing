@@ -1,18 +1,18 @@
 package com.howtodoinjava.employees;
 
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
+
 import com.howtodoinjava.employees.controllers.EmployeeController;
 import com.howtodoinjava.employees.model.Employee;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.*;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class SystemTests {
