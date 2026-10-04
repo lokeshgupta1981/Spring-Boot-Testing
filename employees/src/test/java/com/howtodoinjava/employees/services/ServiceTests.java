@@ -20,47 +20,45 @@ import com.howtodoinjava.employees.dao.EmployeeRepository;
 import com.howtodoinjava.employees.model.Employee;
 
 @ExtendWith(MockitoExtension.class)
-public class ServiceTests 
-{
-	@InjectMocks
-    EmployeeService service;
-     
-    @Mock
-    EmployeeRepository dao;
-    
-    @BeforeEach
-    public void init() {
-        MockitoAnnotations.openMocks(this);
-    }
-    
-    @Test
-    void testFindAllEmployees()
-    {
-        List<Employee> list = new ArrayList<Employee>();
-        Employee empOne = new Employee("John", "John");
-        Employee empTwo = new Employee("Alex", "kolenchiski");
-        Employee empThree = new Employee("Steve", "Waugh");
-         
-        list.add(empOne);
-        list.add(empTwo);
-        list.add(empThree);
-         
-        when(dao.findAll()).thenReturn(list);
-         
-        //test
-        List<Employee> empList = service.findAll();
-         
-        assertEquals(3, empList.size());
-        verify(dao, times(1)).findAll();
-    }
-    
-    @Test
-    void testCreateOrSaveEmployee()
-    {
-        Employee employee = new Employee("Lokesh","Gupta");
-         
-        service.save(employee);
-         
-        verify(dao, times(1)).save(employee);
-    }
+public class ServiceTests {
+
+  @InjectMocks
+  EmployeeService service;
+
+  @Mock
+  EmployeeRepository dao;
+
+  @BeforeEach
+  public void init() {
+    MockitoAnnotations.openMocks(this);
+  }
+
+  @Test
+  void testFindAllEmployees() {
+    List<Employee> list = new ArrayList<Employee>();
+    Employee empOne = new Employee("John", "John");
+    Employee empTwo = new Employee("Alex", "kolenchiski");
+    Employee empThree = new Employee("Steve", "Waugh");
+
+    list.add(empOne);
+    list.add(empTwo);
+    list.add(empThree);
+
+    when(dao.findAll()).thenReturn(list);
+
+    //test
+    List<Employee> empList = service.findAll();
+
+    assertEquals(3, empList.size());
+    verify(dao, times(1)).findAll();
+  }
+
+  @Test
+  void testCreateOrSaveEmployee() {
+    Employee employee = new Employee("Lokesh", "Gupta");
+
+    service.save(employee);
+
+    verify(dao, times(1)).save(employee);
+  }
 }
